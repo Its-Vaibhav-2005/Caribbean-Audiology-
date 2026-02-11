@@ -17,10 +17,10 @@ import { Phone, Mail, MapPin, Clock, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const contactInfo = [
-  { icon: Phone, title: "Phone", detail: "(868) 123-4567", sub: "Mon–Fri, 8am–5pm" },
+  { icon: Phone, title: "Phone", detail: "(868) 123-4567", sub: "Mon-Fri, 8am-5pm" },
   { icon: Mail, title: "Email", detail: "info@caribbeanaudiology.com", sub: "We reply within 24 hours" },
   { icon: MapPin, title: "Location", detail: "123 Health Avenue", sub: "Port of Spain, Trinidad & Tobago" },
-  { icon: Clock, title: "Hours", detail: "Mon–Fri: 8am–5pm", sub: "Sat: 9am–1pm | Sun: Closed" },
+  { icon: Clock, title: "Hours", detail: "Mon-Fri: 8am-5pm", sub: "Sat: 9am-1pm | Sun: Closed" },
 ];
 
 const expectations = [
@@ -28,7 +28,7 @@ const expectations = [
   "Detailed intake form via email",
   "Insurance verification assistance",
   "Comfortable private consultation rooms",
-  "Comprehensive evaluation lasting 60–90 minutes",
+  "Comprehensive evaluation lasting 60-90 minutes",
   "Clear explanation of findings and options",
 ];
 
@@ -38,6 +38,7 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Form submitted:", e.target);
     setSubmitting(true);
     setTimeout(() => {
       setSubmitting(false);
