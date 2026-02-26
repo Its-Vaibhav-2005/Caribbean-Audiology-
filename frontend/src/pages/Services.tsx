@@ -12,7 +12,10 @@ import { LucideIcon } from "lucide-react";
 //Images . . .
 import industryImage from "@/assets/Images/Industry.jpg"
 import babyImage from "@/assets/Images/Child.jpg"
-
+import evaluationImage from "@/assets/Images/Evaluation.png"
+import paediatricImage from "@/assets/Images/Paediatric.jpg"
+import tinnitusImage from "@/assets/Images/EarTest.jpg";
+import earImage from "@/assets/Images/HearingAid.avif"
 
 interface ServiceSection {
   id: string;
@@ -51,6 +54,7 @@ const serviceSections: ServiceSection[] = [
       "Our diagnostic hearing evaluations provide a complete picture of your hearing health. Using advanced audiometric equipment, we assess the type, degree, and configuration of hearing loss.",
       "The evaluation includes pure tone audiometry, speech audiometry, tympanometry, and other specialized tests as needed to develop a personalized treatment plan.",
     ],
+    image: evaluationImage,
   },
   {
     id: "paediatric",
@@ -60,6 +64,7 @@ const serviceSections: ServiceSection[] = [
       "Children have unique hearing needs that require specialized expertise and a gentle approach. Our paediatric audiology services are designed to make hearing assessments comfortable and engaging for young patients.",
       "We use age-appropriate testing methods including visual reinforcement audiometry, play audiometry, and otoacoustic emissions to ensure accurate results for children of all ages.",
     ],
+    image: paediatricImage
   },
   {
     id: "hearing-aid-fitting",
@@ -69,6 +74,7 @@ const serviceSections: ServiceSection[] = [
       "Finding the right hearing aid is a personalized process. We work with you to select the best hearing aid style and technology level based on your hearing loss, lifestyle, and preferences.",
       "Our fitting process includes real-ear measurements, speech mapping, and fine-tuning to ensure your hearing aids provide optimal sound quality and comfort in every listening situation.",
     ],
+    image: earImage
   },
   {
     id: "tinnitus-treatment",
@@ -78,6 +84,7 @@ const serviceSections: ServiceSection[] = [
       "Tinnitus, or ringing in the ears, can significantly impact your quality of life. Our specialized tinnitus program includes a thorough evaluation to understand the nature and impact of your tinnitus.",
       "We offer a range of evidence-based treatment options including sound therapy, counseling, and hearing aids with tinnitus management features to help you find relief.",
     ],
+    image: tinnitusImage
   },
   {
     id: "cochlear-implant",
@@ -87,6 +94,7 @@ const serviceSections: ServiceSection[] = [
       "For individuals with severe to profound hearing loss who do not benefit sufficiently from hearing aids, cochlear implants can be life-changing. We provide comprehensive cochlear implant services including candidacy evaluation, device programming, and rehabilitation.",
       "Our team works closely with ENT surgeons and speech-language pathologists to ensure the best possible outcomes for cochlear implant recipients.",
     ],
+    image: null
   },
   {
     id: "bone-anchored",
@@ -96,6 +104,7 @@ const serviceSections: ServiceSection[] = [
       "Bone anchored hearing aids (BAHA) are an excellent solution for individuals with conductive hearing loss, mixed hearing loss, or single-sided deafness who cannot benefit from conventional hearing aids.",
       "We provide evaluation, fitting, and ongoing support for bone anchored hearing devices, working with surgical teams to ensure optimal outcomes.",
     ],
+    image: null
   },
   {
     id: "ear-protection",
@@ -105,6 +114,7 @@ const serviceSections: ServiceSection[] = [
       "Protecting your hearing is just as important as treating hearing loss. We offer custom-molded ear protection for musicians, industrial workers, swimmers, and anyone exposed to loud environments.",
       "Our custom earplugs provide superior comfort and protection compared to generic options, and can be designed for specific noise reduction requirements.",
     ],
+    image: null
   },
 ];
 
