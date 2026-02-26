@@ -2,6 +2,8 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import MyIcon from '@/assets/icon.png'
+
 
 const services = [
   { label: "Industrial Screening", href: "/services#industrial-screening" },
@@ -37,9 +39,11 @@ const Navbar = () => {
       <div className="container mx-auto px-4 flex items-center justify-between h-16">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-serif font-bold text-lg">
-            CA
-          </div>
+          <img
+            src={MyIcon}
+            alt="Caribbean Audiology Logo"
+            className="w-12 h-12 object-contain"
+          />
           <span className="font-serif font-semibold text-foreground text-sm md:text-base leading-tight hidden sm:block">
             Caribbean Audiology<br className="hidden lg:block" /> Healthcare Ltd.
           </span>

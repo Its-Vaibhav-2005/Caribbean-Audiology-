@@ -9,11 +9,17 @@ import {
 } from "lucide-react";
 import { LucideIcon } from "lucide-react";
 
+//Images . . .
+import industryImage from "@/assets/Images/Industry.jpg"
+import babyImage from "@/assets/Images/Child.jpg"
+
+
 interface ServiceSection {
   id: string;
   icon: LucideIcon;
   title: string;
   description: string[];
+  image?: string;
 }
 
 const serviceSections: ServiceSection[] = [
@@ -25,6 +31,7 @@ const serviceSections: ServiceSection[] = [
       "Our industrial hearing screening program helps employers maintain a safe and healthy workplace. We provide on-site and in-clinic hearing assessments that comply with occupational health and safety standards.",
       "Regular screening helps identify noise-induced hearing loss early, allowing for timely intervention and workplace modifications to protect your employees' hearing health.",
     ],
+    image: industryImage,
   },
   {
     id: "newborn-screening",
@@ -34,6 +41,7 @@ const serviceSections: ServiceSection[] = [
       "Early identification of hearing loss is crucial for a child's speech, language, and cognitive development. Our newborn hearing screening program uses state-of-the-art technology to assess hearing in infants within the first few weeks of life.",
       "If a hearing loss is detected, we work with families to develop an early intervention plan to maximize the child's developmental potential.",
     ],
+    image: babyImage,
   },
   {
     id: "evaluations",
@@ -135,7 +143,7 @@ const Services = () => {
                 </Button>
               </div>
               <div className={`bg-primary/10 rounded-2xl aspect-[4/3] flex items-center justify-center ${index % 2 === 1 ? "lg:order-1" : ""}`}>
-                <service.icon className="h-20 w-20 text-primary/30" />
+                <img src={service.image} alt={service.title} className="h-full w-full object-cover" />
               </div>
             </div>
           </div>

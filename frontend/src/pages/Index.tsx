@@ -12,6 +12,11 @@ import {
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 
+// Images . . .
+import earImage from "@/assets/Images/EarTest.jpg"
+import careImage from "@/assets/Images/Care.jpg"
+import healpingImage from "@/assets/Images/Helping.jpg"
+
 const services = [
   { icon: Factory, title: "Industrial Screening", description: "Comprehensive hearing screenings for workplace safety and occupational health compliance." },
   { icon: Baby, title: "Newborn Screening", description: "Early detection of hearing loss in newborns for timely intervention and development." },
@@ -68,7 +73,11 @@ const Index = () => {
       >
         <div className="relative">
           <div className="bg-primary/10 rounded-2xl aspect-[4/3] flex items-center justify-center">
-            <Ear className="h-24 w-24 text-primary/40" />
+            <img
+              src={earImage}
+              alt="Ear test"
+              className="h-full w-full object-cover" 
+            />
           </div>
           <Card className="absolute -bottom-4 -left-4 shadow-lg animate-fade-in">
             <CardContent className="p-4 flex items-center gap-3">
@@ -135,7 +144,11 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div className="bg-primary/10 rounded-2xl aspect-[4/3] flex items-center justify-center">
-              <Heart className="h-20 w-20 text-primary/40" />
+              <img 
+                src={healpingImage}
+                alt="Helping patient"
+                className="h-full w-full object-cover"
+              />
             </div>
             <div>
               <span className="inline-block text-primary text-sm font-semibold tracking-wide uppercase mb-3">
@@ -180,6 +193,11 @@ const Index = () => {
             </div>
             <div className="bg-primary/10 rounded-2xl aspect-[4/3] flex items-center justify-center">
               <Volume2 className="h-20 w-20 text-primary/40" />
+              <img
+                src={careImage}
+                alt="Specialized Care"
+                className="h-full w-full object-cover" 
+              />
             </div>
           </div>
         </div>
