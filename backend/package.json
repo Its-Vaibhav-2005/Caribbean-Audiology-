@@ -1,0 +1,22 @@
+{
+  "name": "Caribbean Audiology",
+  "version": "1.0.0",
+  "description": "Backend for Caribbean Audiology",
+  "license": "ISC",
+  "author": "Vaibhav Pandey",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
