@@ -1,239 +1,200 @@
-import Layout from "@/components/layout/Layout";
-import Hero from "@/components/shared/Hero";
-import SectionHeader from "@/components/shared/SectionHeader";
-import ServiceCard from "@/components/shared/ServiceCard";
-import CTABanner from "@/components/shared/CTABanner";
+import { Link } from "react-router-dom";
+import Layout from "@/components/Layout";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
-  Factory, Baby, Stethoscope, UserCheck, Ear, Volume2,
-  CircuitBoard, Bone, Shield, Award, Cpu, Heart,
-  Users, LifeBuoy, BookOpen, Star, ChevronRight, Check
+  Ear, Baby, Headphones, Activity, Shield, Heart,
+  CheckCircle, HelpCircle, Lightbulb, ArrowRight, Users, Stethoscope, Star,
 } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-
-// Images . . .
-import earImage from "@/assets/Images/EarTest.jpg"
-import careImage from "@/assets/Images/Care.jpg"
-import healpingImage from "@/assets/Images/Helping.jpg"
+import heroBg from "@/assets/hero-bg.jpg";
+import { useCountUp } from "@/hooks/useCountUp";
 
 const services = [
-  { icon: Factory, title: "Industrial Screening", description: "Comprehensive hearing screenings for workplace safety and occupational health compliance." },
-  { icon: Baby, title: "Newborn Screening", description: "Early detection of hearing loss in newborns for timely intervention and development." },
-  { icon: Stethoscope, title: "Hearing Evaluations", description: "Thorough diagnostic assessments to determine the type and degree of hearing loss." },
-  { icon: UserCheck, title: "Paediatric Audiology", description: "Specialized hearing services tailored for infants, children, and adolescents." },
-  { icon: Ear, title: "Hearing Aid Fitting", description: "Expert selection, fitting, and programming of hearing aids for optimal performance." },
-  { icon: Volume2, title: "Tinnitus Treatment", description: "Evidence-based management and relief strategies for ringing in the ears." },
-  { icon: CircuitBoard, title: "Cochlear Implant", description: "Assessment and rehabilitation for cochlear implant candidates and recipients." },
-  { icon: Bone, title: "Bone Anchored Hearing", description: "Advanced bone conduction hearing solutions for specific types of hearing loss." },
-  { icon: Shield, title: "Custom Ear Protection", description: "Custom-molded hearing protection for musicians, industrial workers, and swimmers." },
+  { icon: Ear, title: "Hearing Evaluations", desc: "Comprehensive diagnostic hearing assessments for all ages." },
+  { icon: Headphones, title: "Hearing Aid Fitting", desc: "Custom fitting and programming of hearing aids." },
+  { icon: Activity, title: "Tinnitus Treatment", desc: "Assessment and management of tinnitus symptoms." },
+  { icon: Baby, title: "Pediatric Services", desc: "Specialized hearing care for infants and children." },
+  { icon: Shield, title: "Industrial Screening", desc: "Occupational hearing conservation programs." },
+  { icon: Heart, title: "Cochlear Implants", desc: "Evaluations, mapping, and rehabilitation support." },
 ];
 
-const benefits = [
-  { icon: Award, title: "Expert Audiologists", description: "Our team holds advanced degrees and international certifications." },
-  { icon: Cpu, title: "Cutting-Edge Technology", description: "State-of-the-art equipment for accurate diagnosis and treatment." },
-  { icon: Heart, title: "Patient-Centered Care", description: "Personalized treatment plans designed around your unique needs." },
-  { icon: Users, title: "Multidisciplinary Approach", description: "Collaboration with ENT specialists, speech therapists, and more." },
-  { icon: LifeBuoy, title: "Lifetime Support", description: "Ongoing follow-up care and adjustments for lasting results." },
-  { icon: BookOpen, title: "Research-Driven Practice", description: "Treatment protocols based on the latest scientific evidence." },
+const askYourself = [
+  "Do you have difficulty hearing over the telephone?",
+  "Do you have trouble following conversation when two or more people talk at the same time?",
+  "Do people complain that you turn the TV volume up too high?",
+  "Do you have to strain to understand conversation?",
+  "Do you have trouble hearing in a noisy background?",
+  "Do you find yourself asking people to repeat themselves?",
 ];
 
-const testimonials = [
-  { name: "Sarah M.", text: "The team at Caribbean Audiology changed my life. After years of struggling with hearing loss, I finally feel connected to the world again.", rating: 5 },
-  { name: "James R.", text: "Professional, caring, and thorough. The hearing evaluation was comprehensive and the hearing aids they recommended are perfect.", rating: 5 },
-  { name: "Maria L.", text: "My son's newborn screening was handled with such care and expertise. We caught his hearing loss early thanks to their team.", rating: 5 },
+const didYouKnow = [
+  "Hearing loss is the 3rd most common health problem globally.",
+  "Over 5% of the world's population has disabling hearing loss.",
+  "Noise-induced hearing loss is 100% preventable.",
+  "Untreated hearing loss can lead to social isolation and depression.",
+  "Most hearing loss can be effectively treated with hearing aids.",
 ];
 
 const stats = [
-  { value: "15+", label: "Years Experience" },
-  { value: "5,000+", label: "Patients Served" },
-  { value: "98%", label: "Satisfaction Rate" },
+  { icon: Users, target: 5200, label: "Happy Patients", suffix: "+" },
+  { icon: Stethoscope, target: 12, label: "Expert Audiologists", suffix: "" },
+  { icon: Star, target: 15, label: "Years of Service", suffix: "+" },
+  { icon: Ear, target: 9800, label: "Hearing Tests Done", suffix: "+" },
 ];
 
-const patientFirst = [
-  "Comprehensive initial consultation and assessment",
-  "Personalized treatment plans for every patient",
-  "Ongoing monitoring and follow-up care",
-  "Education and counseling for patients and families",
-  "Access to the latest hearing technology",
-  "Comfortable and welcoming clinic environment",
-];
-
-const Index = () => {
+const StatCounter = ({ icon: Icon, target, label, suffix }: { icon: any; target: number; label: string; suffix: string }) => {
+  const { count, ref } = useCountUp(target, 2000);
   return (
-    <Layout>
-      {/* Hero */}
-      <Hero
-        badge="Now Accepting New Patients"
-        title="Your Hearing Health,"
-        titleAccent="Our Priority"
-        description="At Caribbean Audiology Healthcare, we provide comprehensive audiology services with compassion, expertise, and the latest technology to help you hear the world more clearly."
-        primaryCTA={{ label: "Book Appointment", href: "/contact" }}
-        secondaryCTA={{ label: "Our Services", href: "/services" }}
-      >
-        <div className="relative">
-          <div className="bg-primary/10 rounded-2xl aspect-[4/3] flex items-center justify-center">
-            <img
-              src={earImage}
-              alt="Ear test"
-              className="h-full w-full object-cover" 
-            />
-          </div>
-          <Card className="absolute -bottom-4 -left-4 shadow-lg animate-fade-in">
-            <CardContent className="p-4 flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
-                <Users className="h-5 w-5 text-primary" />
-              </div>
-              <div>
-                <p className="font-semibold text-sm text-foreground">Trusted by Families</p>
-                <p className="text-xs text-muted-foreground">Throughout the Caribbean</p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </Hero>
+    <div ref={ref} className="flex flex-col items-center gap-2">
+      <Icon className="h-7 w-7 text-primary-foreground/80" />
+      <span className="font-serif text-3xl md:text-4xl font-bold text-primary-foreground">
+        {count.toLocaleString()}{suffix}
+      </span>
+      <span className="text-sm text-primary-foreground/70">{label}</span>
+    </div>
+  );
+};
 
-      {/* Stats Bar */}
-      <div className="bg-primary">
-        <div className="container mx-auto px-4 py-6">
-          <div className="grid grid-cols-3 gap-4 text-center">
-            {stats.map((s) => (
-              <div key={s.label}>
-                <p className="text-2xl md:text-3xl font-bold text-primary-foreground">{s.value}</p>
-                <p className="text-xs md:text-sm text-primary-foreground/70">{s.label}</p>
-              </div>
+const Index = () => (
+  <Layout>
+    {/* Hero with background image & teal blur overlay */}
+    <section className="relative h-[calc(100dvh-4rem)] flex flex-col overflow-hidden">
+      <img
+        src={heroBg}
+        alt="Audiology clinic"
+        width={1920}
+        height={1080}
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {/* Teal blur overlay using #267366 */}
+      <div
+        className="absolute inset-0 backdrop-blur-sm"
+        style={{ backgroundColor: "rgba(38, 115, 102, 0.75)" }}
+      />
+
+      {/* Main hero content */}
+      <div className="relative z-10 flex-1 flex flex-col justify-center container mx-auto px-4 text-center max-w-3xl">
+        <p className="text-sm md:text-base tracking-[0.3em] uppercase text-white/70 mb-4 animate-fade-in font-medium">
+          Sense the Difference, Feel Alive
+        </p>
+        <h1 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 animate-fade-in drop-shadow-lg">
+          Welcome to Caribbean Audiology Healthcare
+        </h1>
+        <p className="text-base text-white/85 mb-6 animate-fade-in drop-shadow" style={{ animationDelay: "0.1s" }}>
+          A multidisciplinary approach to hearing healthcare — providing comprehensive audiological services for patients of all ages.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
+          <Link to="/login" className="bg-slate-50 text-green-800">
+            <Button size="lg" className="w-full sm:w-auto bg-white text-[#267366] hover:bg-white/90 font-semibold">
+              Book Appointment
+            </Button>
+          </Link>
+          <Link to="/services" className="bg-slate-50 text-green-800">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto border-white/50 text-green-800 hover:bg-white/10">
+              Our Services <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </Link>
+        </div>
+      </div>
+
+      {/* Stats bar pinned to bottom of hero viewport */}
+      <div className="relative z-10 shrink-0 bg-primary/80 backdrop-blur-md border-t border-white/10">
+        <div className="container mx-auto px-4 py-4 md:py-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
+            {stats.map((s, i) => (
+              <StatCounter key={i} {...s} />
             ))}
           </div>
         </div>
       </div>
+    </section>
 
-      {/* Services */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <SectionHeader
-            label="What We Offer"
-            title="Our Services"
-            description="Comprehensive audiology services for patients of all ages, from screening to rehabilitation."
-          />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map((s) => (
-              <ServiceCard key={s.title} {...s} />
-            ))}
-          </div>
+    {/* Ask Yourself */}
+    <section className="py-16 bg-section-alt">
+      <div className="container mx-auto px-4 max-w-3xl">
+        <div className="flex items-center gap-3 mb-8 justify-center">
+          <HelpCircle className="h-8 w-8 text-primary" />
+          <h2 className="font-serif text-3xl font-bold text-foreground">Ask Yourself</h2>
         </div>
-      </section>
-
-      {/* Why Choose Us */}
-      <section className="py-16 md:py-24 bg-section-alt">
-        <div className="container mx-auto px-4">
-          <SectionHeader
-            label="Why Choose Us"
-            title="Dedicated to Your Hearing Health"
-            description="We combine clinical expertise with genuine care to deliver outstanding hearing healthcare."
-          />
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((b) => (
-              <ServiceCard key={b.title} icon={b.icon} title={b.title} description={b.description} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Patient First */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="bg-primary/10 rounded-2xl aspect-[4/3] flex items-center justify-center">
-              <img 
-                src={healpingImage}
-                alt="Helping patient"
-                className="h-full w-full object-cover"
-              />
+        <p className="text-center text-muted-foreground mb-6">
+          If you answer "yes" to three or more of these questions, you may want to have your hearing evaluated.
+        </p>
+        <div className="space-y-3">
+          {askYourself.map((q, i) => (
+            <div key={i} className="flex items-start gap-3 bg-card rounded-lg p-4 border border-border">
+              <CheckCircle className="h-5 w-5 text-primary mt-0.5 shrink-0" />
+              <span className="text-foreground text-sm">{q}</span>
             </div>
-            <div>
-              <span className="inline-block text-primary text-sm font-semibold tracking-wide uppercase mb-3">
-                Our Approach
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground mb-6">
-                Putting Patients First, Always
-              </h2>
-              <ul className="space-y-3 mb-6">
-                {patientFirst.map((item) => (
-                  <li key={item} className="flex items-start gap-3">
-                    <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link to="/about" className="inline-flex items-center text-primary font-medium hover:underline">
-                Learn About Our Approach <ChevronRight className="h-4 w-4 ml-1" />
-              </Link>
-            </div>
-          </div>
+          ))}
         </div>
-      </section>
-
-      {/* Tinnitus Care */}
-      <section className="py-16 md:py-24 bg-section-alt">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="inline-block text-primary text-sm font-semibold tracking-wide uppercase mb-3">
-                Specialized Care
-              </span>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-foreground mb-4">
-                Living With Tinnitus? We Can Help.
-              </h2>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                Tinnitus affects millions of people worldwide. Our specialized tinnitus management program combines the latest therapeutic approaches to help you find relief and regain control of your life.
-              </p>
-              <Button asChild>
-                <Link to="/tinnitus">Learn About Tinnitus Care</Link>
-              </Button>
-            </div>
-            <div className="bg-primary/10 rounded-2xl aspect-[4/3] flex items-center justify-center">
-              <Volume2 className="h-20 w-20 text-primary/40" />
-              <img
-                src={careImage}
-                alt="Specialized Care"
-                className="h-full w-full object-cover" 
-              />
-            </div>
-          </div>
+        <div className="text-center mt-8">
+          <Link to="/login">
+            <Button>Schedule a Hearing Test</Button>
+          </Link>
         </div>
-      </section>
+      </div>
+    </section>
 
-      {/* Testimonials */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          <SectionHeader
-            label="Testimonials"
-            title="What Our Patients Say"
-            description="Real stories from people whose lives have been transformed by better hearing."
-          />
-          <div className="grid md:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <Card key={t.name} className="border-border">
-                <CardContent className="p-6">
-                  <div className="flex gap-1 mb-4">
-                    {Array.from({ length: t.rating }).map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-primary text-primary" />
-                    ))}
-                  </div>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4 italic">
-                    "{t.text}"
-                  </p>
-                  <p className="font-semibold text-foreground text-sm">— {t.name}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+    {/* Services Overview */}
+    <section className="py-16">
+      <div className="container mx-auto px-4">
+        <h2 className="font-serif text-3xl font-bold text-foreground text-center mb-10">Our Services</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {services.map((s, i) => (
+            <Card key={i} className="hover:shadow-md transition-shadow">
+              <CardContent className="p-6 flex flex-col items-center text-center gap-3">
+                <s.icon className="h-10 w-10 text-primary" />
+                <h3 className="font-serif font-semibold text-lg text-foreground">{s.title}</h3>
+                <p className="text-sm text-muted-foreground">{s.desc}</p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
-      </section>
+        <div className="text-center mt-8">
+          <Link to="/services">
+            <Button variant="outline">View All Services <ArrowRight className="ml-2 h-4 w-4" /></Button>
+          </Link>
+        </div>
+      </div>
+    </section>
 
-      <CTABanner />
-    </Layout>
-  );
-};
+    {/* Did You Know */}
+    <section className="py-16 bg-primary text-primary-foreground">
+      <div className="container mx-auto px-4 max-w-3xl">
+        <div className="flex items-center gap-3 mb-8 justify-center">
+          <Lightbulb className="h-8 w-8" />
+          <h2 className="font-serif text-3xl font-bold">Did You Know?</h2>
+        </div>
+        <div className="space-y-4">
+          {didYouKnow.map((fact, i) => (
+            <div key={i} className="flex items-start gap-3 bg-primary-foreground/10 rounded-lg p-4">
+              <span className="font-bold text-lg shrink-0">{i + 1}.</span>
+              <span className="text-sm">{fact}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Why Choose Us */}
+    <section className="py-16">
+      <div className="container mx-auto px-4 max-w-3xl text-center">
+        <h2 className="font-serif text-3xl font-bold text-foreground mb-8">Why Choose Us?</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          {[
+            { title: "Expert Team", desc: "Qualified audiologists with extensive clinical experience." },
+            { title: "Modern Equipment", desc: "State-of-the-art diagnostic and treatment technology." },
+            { title: "Patient-Centred", desc: "Individualized care plans tailored to your needs." },
+          ].map((item, i) => (
+            <div key={i} className="p-6">
+              <h3 className="font-serif font-semibold text-foreground mb-2">{item.title}</h3>
+              <p className="text-sm text-muted-foreground">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </Layout>
+);
 
 export default Index;
