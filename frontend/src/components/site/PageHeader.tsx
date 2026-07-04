@@ -1,10 +1,26 @@
-export function PageHeader({ kicker, title, subtitle }: { kicker?: string; title: string; subtitle?: string }) {
+export function PageHeader({
+  kicker,
+  title,
+  subtitle,
+}: {
+  kicker?: string;
+  title: string;
+  subtitle?: string;
+}) {
   return (
     <section className="pt-32 pb-14 bg-teal text-cream">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        {kicker && <div className="text-[11px] font-semibold tracking-[0.28em] uppercase text-aqua">{kicker}</div>}
-        <h1 className="mt-3 font-display font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] max-w-4xl">{title}</h1>
-        {subtitle && <p className="mt-5 max-w-2xl text-lg text-cream/80 leading-relaxed">{subtitle}</p>}
+        {kicker && (
+          <div className="text-[11px] font-semibold tracking-[0.28em] uppercase text-aqua">
+            {kicker}
+          </div>
+        )}
+        <h1 className="mt-3 font-display font-semibold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] max-w-4xl">
+          {title}
+        </h1>
+        {subtitle && (
+          <p className="mt-5 max-w-2xl text-lg text-cream/80 leading-relaxed">{subtitle}</p>
+        )}
       </div>
     </section>
   );

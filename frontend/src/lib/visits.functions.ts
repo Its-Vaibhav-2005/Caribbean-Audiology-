@@ -1,52 +1,44 @@
-"use server";
-
-import { createServerFn } from "@tanstack/react-start";
-import { z } from "zod";
-import { pool, ensureTables } from "./db";
-
-export const recordVisit = createServerFn({ method: "POST" })
-  .validator((d: { sessionId: string }) => z.object({ sessionId: z.string().min(8).max(64) }).parse(d))
-  .handler(async ({ data }) => {
-    await ensureTables();
-    try {
-      await pool.query(
-        `INSERT INTO page_visits (session_id, last_seen)
-         VALUES ($1, NOW())
-         ON CONFLICT (session_id)
-         DO UPDATE SET last_seen = NOW()`,
-        [data.sessionId]
-      );
-    } catch (error) {
-      console.error("recordVisit failed:", error);
-    }
-    return { ok: true };
-  });
-
-export const getVisitStats = createServerFn({ method: "GET" }).handler(async () => {
-  await ensureTables();
+// Client-side mock for visit statistics
+export async function recordVisit(data: { sessionId: string }) {
   try {
-    const twoMinAgo = new Date(Date.now() - 2 * 60 * 1000);
-    const [totalRes, liveRes] = await Promise.all([
-      pool.query("SELECT COUNT(*) FROM page_visits"),
-      pool.query("SELECT COUNT(*) FROM page_visits WHERE last_seen >= $1", [twoMinAgo]),
-    ]);
-    const total = parseInt(totalRes.rows[0].count, 10);
-    const live = parseInt(liveRes.rows[0].count, 10);
-    return { total: isNaN(total) ? 0 : total, live: isNaN(live) ? 0 : live };
-  } catch (error) {
-    console.error("getVisitStats failed:", error);
-    return { total: 0, live: 0 };
-  }
-});
-
-export const removeVisit = createServerFn({ method: "POST" })
-  .validator((d: { sessionId: string }) => z.object({ sessionId: z.string().min(8).max(64) }).parse(d))
-  .handler(async ({ data }) => {
-    await ensureTables();
-    try {
-      await pool.query("DELETE FROM page_visits WHERE session_id = $1", [data.sessionId]);
-    } catch (error) {
-      console.error("removeVisit failed:", error);
+    const key = "ca_visit_total";
+    const total = localStorage.getItem(key);
+    // Baseline total is 142
+    const currentTotal = total ? parseInt(total, 10) : 142;
+    // We only increment if this session hasn't been counted in this pageload
+    if (!sessionStorage.getItem("ca_visit_counted")) {
+      const newTotal = currentTotal + 1;
+      localStorage.setItem(key, newTotal.toString());
+      sessionStorage.setItem("ca_visit_counted", "true");
     }
-    return { ok: true };
-  });
+  } catch (error) {
+    console.error("recordVisit mock error:", error);
+  }
+  return { ok: true };
+}
+
+export async function getVisitStats() {
+  try {
+    const key = "ca_visit_total";
+    const storedTotal = localStorage.getItem(key);
+    const total = storedTotal ? parseInt(storedTotal, 10) : 143;
+
+    // Simulate active live visitors between 2 and 6
+    const hour = new Date().getHours();
+    let baseLive = 3;
+    if (hour >= 9 && hour <= 17) {
+      baseLive = 5; // higher activity during business hours
+    }
+    const randomOffset = Math.floor(Math.random() * 3) - 1; // -1, 0, or 1
+    const live = Math.max(1, baseLive + randomOffset);
+
+    return { total, live };
+  } catch (error) {
+    console.error("getVisitStats mock error:", error);
+    return { total: 143, live: 3 };
+  }
+}
+
+export async function removeVisit(data: { sessionId: string }) {
+  return { ok: true };
+}

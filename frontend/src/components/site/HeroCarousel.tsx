@@ -21,35 +21,40 @@ const SLIDES: Slide[] = [
     image: heroClinical,
     kicker: "Clinical Audiology",
     title: "Restoring sound,\nenriching island life.",
-    subtitle: "Comprehensive hearing, tinnitus and balance care across Trinidad & Tobago and the wider Caribbean.",
+    subtitle:
+      "Comprehensive hearing, tinnitus and balance care across Trinidad & Tobago and the wider Caribbean.",
     to: "/services/clinical-audiology",
   },
   {
     image: heroDevices,
     kicker: "Hearing Devices",
     title: "Precision-fit hearing,\ncrafted for your day.",
-    subtitle: "The latest hearing aids, cochlear implants and bone-conduction devices—manually programmed, personally supported.",
+    subtitle:
+      "The latest hearing aids, cochlear implants and bone-conduction devices—manually programmed, personally supported.",
     to: "/services/hearing-devices",
   },
   {
     image: heroPaediatric,
     kicker: "Paediatric Audiology",
     title: "Every child\ndeserves to be heard.",
-    subtitle: "From newborn screening to childhood management—state-of-the-art testing tailored to each child.",
+    subtitle:
+      "From newborn screening to childhood management—state-of-the-art testing tailored to each child.",
     to: "/services/paediatric-audiology",
   },
   {
     image: heroRehab,
     kicker: "Rehabilitation & Counselling",
     title: "Confidence in\nevery conversation.",
-    subtitle: "Auditory rehabilitation and family counselling that rebuild communication and everyday connection.",
+    subtitle:
+      "Auditory rehabilitation and family counselling that rebuild communication and everyday connection.",
     to: "/services/rehabilitation",
   },
   {
     image: heroSpecialized,
     kicker: "Specialized Programs",
     title: "Expert care,\nwherever you are.",
-    subtitle: "Tele-audiology, industrial hearing conservation and custom molds—accessible, effective, on-site or online.",
+    subtitle:
+      "Tele-audiology, industrial hearing conservation and custom molds—accessible, effective, on-site or online.",
     to: "/services/specialized-programs",
   },
 ];
@@ -68,11 +73,12 @@ export function HeroCarousel() {
   }, [paused, next]);
 
   return (
-    <section
-      className="relative h-screen min-h-[640px] w-full overflow-hidden bg-teal"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <div className="mx-auto max-w-7xl px-4 md:px-8">
+      <section
+        className="relative h-[calc(100vh-10rem)] min-h-[540px] sm:min-h-[500px] w-full overflow-hidden bg-teal rounded-3xl shadow-xl"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+      >
       {/* Slides */}
       {SLIDES.map((s, idx) => {
         const state = idx === i ? "active" : idx < i ? "past" : "future";
@@ -82,7 +88,11 @@ export function HeroCarousel() {
             className="absolute inset-0 transition-transform duration-[900ms] ease-[cubic-bezier(0.65,0,0.35,1)]"
             style={{
               transform:
-                state === "active" ? "translateX(0)" : state === "past" ? "translateX(-100%)" : "translateX(100%)",
+                state === "active"
+                  ? "translateX(0)"
+                  : state === "past"
+                    ? "translateX(-100%)"
+                    : "translateX(100%)",
               zIndex: state === "active" ? 2 : 1,
             }}
             aria-hidden={state !== "active"}
@@ -109,8 +119,8 @@ export function HeroCarousel() {
 
       {/* Content */}
       <div className="relative z-10 flex h-full flex-col">
-        <div className="flex-1 flex items-end pb-6 sm:pb-10 lg:pb-14">
-          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8 pt-24">
+        <div className="flex-1 flex items-end sm:items-center pt-8 pb-20 sm:pb-28">
+          <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
             <div className="max-w-xl sm:max-w-2xl">
               <div
                 key={`k-${i}`}
@@ -120,17 +130,17 @@ export function HeroCarousel() {
               </div>
               <h1
                 key={`t-${i}`}
-                className="mt-4 sm:mt-5 font-display font-semibold text-cream text-4xl sm:text-6xl lg:text-7xl leading-[1.05] sm:leading-[1.02] whitespace-pre-line animate-in fade-in slide-in-from-left-6 duration-700"
+                className="mt-3 sm:mt-5 font-display font-semibold text-cream text-3xl sm:text-6xl lg:text-7xl leading-[1.1] sm:leading-[1.02] whitespace-pre-line animate-in fade-in slide-in-from-left-6 duration-700"
               >
                 {SLIDES[i].title}
               </h1>
               <p
                 key={`s-${i}`}
-                className="mt-4 sm:mt-6 max-w-xl text-base sm:text-lg text-cream/85 leading-relaxed animate-in fade-in slide-in-from-left-8 duration-700"
+                className="mt-2 sm:mt-6 max-w-xl text-sm sm:text-lg text-cream/80 leading-relaxed animate-in fade-in slide-in-from-left-8 duration-700"
               >
                 {SLIDES[i].subtitle}
               </p>
-              <div className="mt-6 sm:mt-9 flex flex-wrap gap-3">
+              <div className="mt-4 sm:mt-9 flex flex-wrap gap-3">
                 <Link
                   to="/appointments"
                   className="inline-flex items-center gap-2 rounded-full bg-teal-mid px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-cream transition-all hover:bg-aqua hover:text-teal hover:shadow-2xl"
@@ -149,7 +159,7 @@ export function HeroCarousel() {
         </div>
 
         {/* Controls row */}
-        <div className="relative z-10 pb-8 sm:pb-10 px-5 sm:px-8">
+        <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 z-20 px-5 sm:px-8">
           <div className="mx-auto flex max-w-7xl items-end justify-between gap-4">
             <div className="flex items-center gap-3">
               <button
@@ -184,11 +194,9 @@ export function HeroCarousel() {
               <VisitorCounter />
             </div>
           </div>
-          <div className="mt-4 sm:hidden">
-            <VisitorCounter />
-          </div>
         </div>
       </div>
-    </section>
+      </section>
+    </div>
   );
 }

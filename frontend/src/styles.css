@@ -46,18 +46,18 @@
   --radius: 0.75rem;
 
   /* Brand palette from user schema */
-  --teal: oklch(0.44 0.07 210);       /* #0E5664 */
-  --teal-mid: oklch(0.60 0.08 210);   /* #2E8FA2 */
-  --aqua: oklch(0.83 0.09 200);       /* #7FD3DA */
-  --cream: oklch(0.98 0.02 85);       /* #FFF7EA */
-  --sand: oklch(0.87 0.05 75);        /* #E8D2B0 */
+  --teal: oklch(0.44 0.07 210); /* #0E5664 */
+  --teal-mid: oklch(0.6 0.08 210); /* #2E8FA2 */
+  --aqua: oklch(0.83 0.09 200); /* #7FD3DA */
+  --cream: oklch(0.98 0.02 85); /* #FFF7EA */
+  --sand: oklch(0.87 0.05 75); /* #E8D2B0 */
 
   --background: var(--cream);
-  --foreground: oklch(0.20 0.03 210);
+  --foreground: oklch(0.2 0.03 210);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.20 0.03 210);
+  --card-foreground: oklch(0.2 0.03 210);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.20 0.03 210);
+  --popover-foreground: oklch(0.2 0.03 210);
   --primary: var(--teal);
   --primary-foreground: var(--cream);
   --secondary: var(--sand);
@@ -66,7 +66,7 @@
   --muted-foreground: oklch(0.45 0.03 210);
   --accent: var(--aqua);
   --accent-foreground: var(--teal);
-  --destructive: oklch(0.55 0.20 27);
+  --destructive: oklch(0.55 0.2 27);
   --destructive-foreground: var(--cream);
   --border: oklch(0.88 0.02 200);
   --input: oklch(0.88 0.02 200);
@@ -74,15 +74,15 @@
 }
 
 .dark {
-  --background: oklch(0.20 0.03 210);
+  --background: oklch(0.2 0.03 210);
   --foreground: var(--cream);
   --card: oklch(0.25 0.04 210);
   --card-foreground: var(--cream);
   --popover: oklch(0.25 0.04 210);
   --popover-foreground: var(--cream);
   --primary: var(--aqua);
-  --primary-foreground: oklch(0.20 0.03 210);
-  --secondary: oklch(0.30 0.04 210);
+  --primary-foreground: oklch(0.2 0.03 210);
+  --secondary: oklch(0.3 0.04 210);
   --secondary-foreground: var(--cream);
   --muted: oklch(0.28 0.03 210);
   --muted-foreground: oklch(0.75 0.02 200);
@@ -106,7 +106,10 @@
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }

@@ -32,9 +32,9 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
   return (
     <>
       <header
-        className="fixed top-0 inset-x-0 z-40 transition-all duration-300 bg-cream/70 backdrop-blur border-b border-border shadow-sm"
+        className="fixed top-4 inset-x-4 md:inset-x-8 z-40 transition-all duration-300 bg-cream/70 backdrop-blur border border-border shadow-md rounded-2xl max-w-7xl mx-auto"
       >
-        <div className="w-full px-6 md:px-12">
+        <div className="w-full px-4 md:px-8">
           <div className="flex h-20 items-center justify-between gap-4">
             <Logo variant="dark" />
 
@@ -114,7 +114,10 @@ export function Navbar({ overlay = false }: { overlay?: boolean }) {
             >
               Book Appointment
             </Link>
-            <a href="tel:+18687356666" className="flex items-center justify-center gap-2 text-cream/80 text-sm">
+            <a
+              href="tel:+18687356666"
+              className="flex items-center justify-center gap-2 text-cream/80 text-sm"
+            >
               <Phone className="h-4 w-4" /> +1-868-735-6666
             </a>
           </div>

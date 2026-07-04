@@ -1,8 +1,4 @@
-"use server";
-
-import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { pool, ensureTables } from "./db";
 
 const appointmentSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -13,19 +9,29 @@ const appointmentSchema = z.object({
   notes: z.string().optional(),
 });
 
-export const createAppointment = createServerFn({ method: "POST" })
-  .validator((d: z.infer<typeof appointmentSchema>) => appointmentSchema.parse(d))
-  .handler(async ({ data }) => {
-    await ensureTables();
-    try {
-      await pool.query(
-        `INSERT INTO appointments (name, phone, email, service, appointment_date, notes)
-         VALUES ($1, $2, $3, $4, $5, $6)`,
-        [data.name, data.phone, data.email, data.service, data.date, data.notes || null]
-      );
-      return { success: true };
-    } catch (error) {
-      console.error("createAppointment failed:", error);
-      return { success: false, error: "Database error. Please try again." };
-    }
-  });
+export type AppointmentData = z.infer<typeof appointmentSchema>;
+
+export async function createAppointment(data: AppointmentData) {
+  // Validate data
+  appointmentSchema.parse(data);
+
+  // Simulate server latency
+  await new Promise((resolve) => setTimeout(resolve, 800));
+
+  try {
+    // Save to localStorage to persist client-side
+    const key = "ca_appointments";
+    const existing = localStorage.getItem(key);
+    const list = existing ? JSON.parse(existing) : [];
+    list.push({
+      ...data,
+      id: Date.now(),
+      created_at: new Date().toISOString(),
+    });
+    localStorage.setItem(key, JSON.stringify(list));
+    return { success: true };
+  } catch (error) {
+    console.error("createAppointment mock failed:", error);
+    return { success: false, error: "Failed to request appointment. Please try again." };
+  }
+}
