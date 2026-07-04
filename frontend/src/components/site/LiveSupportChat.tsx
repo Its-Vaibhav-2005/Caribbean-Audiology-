@@ -240,21 +240,40 @@ export function LiveSupportChat() {
         </div>
       )}
 
-      {/* Floating button */}
-      <button
-        onClick={toggleChat}
-        className="fixed bottom-6 left-6 sm:bottom-8 sm:left-8 flex h-14 w-14 items-center justify-center rounded-full bg-teal text-cream shadow-lg shadow-teal/20 hover:shadow-xl hover:shadow-teal/30 transition-all duration-300 hover:bg-teal-mid hover:scale-110 active:scale-95 cursor-pointer z-50"
-        aria-label="Toggle Live Support Chat"
-      >
-        <span className="absolute inset-0 rounded-full bg-teal animate-ping opacity-20 -z-10" />
-        {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
-        {hasNewMessage && !isOpen && (
-          <span className="absolute top-0 right-0 flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-aqua opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-aqua"></span>
-          </span>
+      {/* Floating button container */}
+      <div className="fixed bottom-1 left-1 sm:bottom-3 sm:left-3 flex items-center justify-center h-24 w-24 z-50">
+        {/* Rotating Circular Text */}
+        {!isOpen && (
+          <svg className="absolute w-full h-full animate-[spin_15s_linear_infinite] select-none pointer-events-none" viewBox="0 0 100 100">
+            <path
+              id="textPath"
+              d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
+              fill="none"
+            />
+            <text className="fill-teal-mid dark:fill-aqua text-[11px] font-black tracking-[0.16em] uppercase">
+              <textPath href="#textPath" startOffset="0%">
+                • AI Assistant • AI Assistant 
+              </textPath>
+            </text>
+          </svg>
         )}
-      </button>
+
+        {/* Floating button */}
+        <button
+          onClick={toggleChat}
+          className="relative flex h-14 w-14 items-center justify-center rounded-full bg-teal text-cream shadow-lg shadow-teal/20 hover:shadow-xl hover:shadow-teal/30 transition-all duration-300 hover:bg-teal-mid hover:scale-110 active:scale-95 cursor-pointer z-50"
+          aria-label="Toggle Live Support Chat"
+        >
+          <span className="absolute inset-0 rounded-full bg-teal animate-ping opacity-20 -z-10" />
+          {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
+          {hasNewMessage && !isOpen && (
+            <span className="absolute top-0 right-0 flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-aqua opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-aqua"></span>
+            </span>
+          )}
+        </button>
+      </div>
     </div>
   );
 }

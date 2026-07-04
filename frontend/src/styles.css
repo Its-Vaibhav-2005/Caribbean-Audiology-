@@ -144,6 +144,17 @@
 .animate-marquee:hover,
 .animate-marquee-reverse:hover {
   animation-play-state: paused;
+}@keyframes text-glow-pulse {
+  0%, 100% {
+    text-shadow: 0 0 2px rgba(46, 143, 162, 0.2);
+    color: var(--teal-mid);
+  }
+  50% {
+    text-shadow: 0 0 10px rgba(46, 143, 162, 0.8), 0 0 20px rgba(46, 143, 162, 0.5);
+    color: var(--teal);
+  }
 }
 
-
+.animate-text-glow {
+  animation: text-glow-pulse 2s infinite ease-in-out;
+}

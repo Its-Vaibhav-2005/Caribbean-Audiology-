@@ -98,18 +98,7 @@ function Appointments() {
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 grid gap-10 lg:grid-cols-[1.2fr_1fr]">
           <div className="rounded-2xl bg-card border border-border p-8 sm:p-10 shadow-sm">
-            <div className="flex items-center justify-between gap-4">
-              <h2 className="font-display text-3xl text-teal">Request an appointment</h2>
-              <button
-                ref={infoBtnRef}
-                type="button"
-                onClick={() => setIsInfoOpen(true)}
-                className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-teal/10 text-teal hover:bg-teal hover:text-cream transition-all cursor-pointer"
-                title="What to expect at your appointment"
-              >
-                <Info className="h-5 w-5" />
-              </button>
-            </div>
+            <h2 className="font-display text-3xl text-teal">Request an appointment</h2>
             <p className="mt-2 text-muted-foreground">
               We'll get back to you within one business day to confirm.
             </p>
@@ -129,6 +118,16 @@ function Appointments() {
               </div>
             ) : (
               <form ref={formRef} id="appointment-form" onSubmit={handleSubmit} className="mt-8 grid gap-5">
+                <div className="flex justify-start">
+                  <button
+                    ref={infoBtnRef}
+                    type="button"
+                    onClick={() => setIsInfoOpen(true)}
+                    className="inline-flex items-center gap-1.5 text-sm font-semibold transition-all cursor-pointer animate-text-glow"
+                  >
+                    <Info className="h-4 w-4 text-teal-mid" /> What to Expect at Your Visit
+                  </button>
+                </div>
                 <div className="grid gap-5 sm:grid-cols-2">
                   <Field label="Full name" name="name" required />
                   <Field label="Phone" name="phone" required type="tel" />
