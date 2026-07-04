@@ -3,8 +3,12 @@ import { ArrowRight, Ear, HeartPulse, Baby, Users2, Radio, Stethoscope } from "l
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { HeroCarousel } from "@/components/site/HeroCarousel";
+import { delay } from "@/lib/utils";
+import { HomeSkeleton } from "@/components/site/Skeletons";
 
 export const Route = createFileRoute("/")({
+  loader: () => delay(450),
+  pendingComponent: HomeSkeleton,
   component: Index,
 });
 

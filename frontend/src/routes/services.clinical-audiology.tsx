@@ -2,8 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader, Prose } from "@/components/site/PageHeader";
+import { delay } from "@/lib/utils";
+import { ServiceDetailSkeleton } from "@/components/site/Skeletons";
 
 export const Route = createFileRoute("/services/clinical-audiology")({
+  loader: () => delay(450),
+  pendingComponent: ServiceDetailSkeleton,
   head: () => ({
     meta: [
       { title: "Clinical Audiology — Caribbean Audiology Healthcare Ltd." },

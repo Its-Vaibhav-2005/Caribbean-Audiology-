@@ -3,8 +3,12 @@ import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader, Prose } from "@/components/site/PageHeader";
 import { Music, Activity, BrainCircuit, Dna, Sprout, ExternalLink } from "lucide-react";
+import { delay } from "@/lib/utils";
+import { ResourceDetailSkeleton } from "@/components/site/Skeletons";
 
 export const Route = createFileRoute("/resources/article")({
+  loader: () => delay(450),
+  pendingComponent: ResourceDetailSkeleton,
   head: () => ({
     meta: [
       { title: "Research Articles — Caribbean Audiology Healthcare Ltd." },

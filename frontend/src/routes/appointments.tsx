@@ -7,8 +7,12 @@ import { PageHeader } from "@/components/site/PageHeader";
 import { Testimonials } from "@/components/site/Testimonials";
 import { createAppointment } from "@/lib/appointments.functions";
 import { FloatingTrustButton } from "@/components/site/FloatingTrustButton";
+import { delay } from "@/lib/utils";
+import { AppointmentsSkeleton } from "@/components/site/Skeletons";
 
 export const Route = createFileRoute("/appointments")({
+  loader: () => delay(450),
+  pendingComponent: AppointmentsSkeleton,
   head: () => ({
     meta: [
       { title: "Book an Appointment — Caribbean Audiology Healthcare Ltd." },

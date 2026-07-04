@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
+import { delay } from "@/lib/utils";
+import { ResourceDetailSkeleton } from "@/components/site/Skeletons";
 import {
   Accordion,
   AccordionContent,
@@ -129,6 +131,8 @@ const FAQ_DATA: FAQCategory[] = [
 ];
 
 export const Route = createFileRoute("/resources/faqs")({
+  loader: () => delay(450),
+  pendingComponent: ResourceDetailSkeleton,
   head: () => ({
     meta: [
       { title: "FAQs — Caribbean Audiology Healthcare Ltd." },

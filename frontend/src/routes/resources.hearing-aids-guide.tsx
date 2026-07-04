@@ -2,8 +2,12 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader, Prose } from "@/components/site/PageHeader";
+import { delay } from "@/lib/utils";
+import { ResourceDetailSkeleton } from "@/components/site/Skeletons";
 
 export const Route = createFileRoute("/resources/hearing-aids-guide")({
+  loader: () => delay(450),
+  pendingComponent: ResourceDetailSkeleton,
   head: () => ({
     meta: [
       { title: "Hearing Aids Guide — Caribbean Audiology Healthcare Ltd." },

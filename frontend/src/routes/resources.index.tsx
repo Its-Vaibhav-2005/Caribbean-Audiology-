@@ -3,8 +3,12 @@ import { ArrowRight, HelpCircle, BookOpen, FileText, ClipboardCheck } from "luci
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
+import { delay } from "@/lib/utils";
+import { ResourcesIndexSkeleton } from "@/components/site/Skeletons";
 
 export const Route = createFileRoute("/resources/")({
+  loader: () => delay(450),
+  pendingComponent: ResourcesIndexSkeleton,
   head: () => ({
     meta: [
       { title: "Resources — Caribbean Audiology Healthcare Ltd." },

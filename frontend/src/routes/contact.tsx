@@ -5,8 +5,12 @@ import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
 import { Testimonials } from "@/components/site/Testimonials";
 import { FloatingTrustButton } from "@/components/site/FloatingTrustButton";
+import { delay } from "@/lib/utils";
+import { ContactSkeleton } from "@/components/site/Skeletons";
 
 export const Route = createFileRoute("/contact")({
+  loader: () => delay(450),
+  pendingComponent: ContactSkeleton,
   head: () => ({
     meta: [
       { title: "Contact — Caribbean Audiology Healthcare Ltd." },

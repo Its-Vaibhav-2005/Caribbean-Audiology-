@@ -3,8 +3,12 @@ import { ArrowRight } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
+import { delay } from "@/lib/utils";
+import { ServicesIndexSkeleton } from "@/components/site/Skeletons";
 
 export const Route = createFileRoute("/services/")({
+  loader: () => delay(450),
+  pendingComponent: ServicesIndexSkeleton,
   head: () => ({
     meta: [
       { title: "Services — Caribbean Audiology Healthcare Ltd." },
