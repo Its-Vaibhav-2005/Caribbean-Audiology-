@@ -10,44 +10,52 @@ interface Testimonial {
 const TESTIMONIALS: Testimonial[] = [
   {
     name: "Maria R.",
-    quote: "I was nervous about getting my first hearing aid, but the team made the process so easy. They explained everything clearly and treated me with such kindness. Now I can enjoy conversations with my grandchildren again.",
-    tags: ["Hearing Aids", "Patient Care"]
+    quote:
+      "I was nervous about getting my first hearing aid, but the team made the process so easy. They explained everything clearly and treated me with such kindness. Now I can enjoy conversations with my grandchildren again.",
+    tags: ["Hearing Aids", "Patient Care"],
   },
   {
     name: "David P.",
-    quote: "The clinic staff were professional and attentive. My hearing test was thorough, and the audiologist helped me choose the right device for my lifestyle. I feel more confident at work and in social settings.",
-    tags: ["Hearing Test", "Lifestyle Fitting"]
+    quote:
+      "The clinic staff were professional and attentive. My hearing test was thorough, and the audiologist helped me choose the right device for my lifestyle. I feel more confident at work and in social settings.",
+    tags: ["Hearing Test", "Lifestyle Fitting"],
   },
   {
     name: "Sarah L.",
-    quote: "I had been struggling with tinnitus for years. The clinic provided not only treatment options but also patient education that gave me hope. Their support has truly improved my quality of life.",
-    tags: ["Tinnitus Management", "Education"]
+    quote:
+      "I had been struggling with tinnitus for years. The clinic provided not only treatment options but also patient education that gave me hope. Their support has truly improved my quality of life.",
+    tags: ["Tinnitus Management", "Education"],
   },
   {
     name: "John K.",
-    quote: "From the moment I walked in, I felt cared for. The follow-up appointments ensured my hearing aid was perfectly adjusted. I can finally hear music the way I used to.",
-    tags: ["Follow-up Care", "Custom Adjustment"]
+    quote:
+      "From the moment I walked in, I felt cared for. The follow-up appointments ensured my hearing aid was perfectly adjusted. I can finally hear music the way I used to.",
+    tags: ["Follow-up Care", "Custom Adjustment"],
   },
   {
     name: "Anita S.",
-    quote: "The constant noise was overwhelming, but the team treated me with patience and empathy. Their combination of sound therapy and lifestyle advice has given me real relief.",
-    tags: ["Tinnitus Care", "Sound Therapy"]
+    quote:
+      "The constant noise was overwhelming, but the team treated me with patience and empathy. Their combination of sound therapy and lifestyle advice has given me real relief.",
+    tags: ["Tinnitus Care", "Sound Therapy"],
   },
   {
     name: "Saumya L.",
-    quote: "I lived with constant ringing in my ears for years. The clinic gave me hope by explaining my options clearly and guiding me through sound therapy. Today, I sleep better and feel more in control of my life.",
-    tags: ["Sound Therapy", "Tinnitus Recovery"]
+    quote:
+      "I lived with constant ringing in my ears for years. The clinic gave me hope by explaining my options clearly and guiding me through sound therapy. Today, I sleep better and feel more in control of my life.",
+    tags: ["Sound Therapy", "Tinnitus Recovery"],
   },
   {
     name: "Hospadles P.",
-    quote: "The tinnitus was affecting my focus at work. The audiologist not only adjusted my hearing aids but also taught me coping strategies. Their support has made a huge difference in my productivity and peace of mind.",
-    tags: ["Productivity", "Coping Strategies"]
+    quote:
+      "The tinnitus was affecting my focus at work. The audiologist not only adjusted my hearing aids but also taught me coping strategies. Their support has made a huge difference in my productivity and peace of mind.",
+    tags: ["Productivity", "Coping Strategies"],
   },
   {
     name: "Kathrine R.",
-    quote: "I thought I had to just 'live with it,' but the clinic showed me that tinnitus can be managed. The counselling sessions helped me reduce my stress, and now the buzzing doesn't dominate my day anymore.",
-    tags: ["Counselling", "Stress Reduction"]
-  }
+    quote:
+      "I thought I had to just 'live with it,' but the clinic showed me that tinnitus can be managed. The counselling sessions helped me reduce my stress, and now the buzzing doesn't dominate my day anymore.",
+    tags: ["Counselling", "Stress Reduction"],
+  },
 ];
 
 export function Testimonials() {
@@ -93,9 +101,14 @@ export function Testimonials() {
   );
 
   return (
-    <section id="testimonials" className="py-20 bg-sand/20 border-t border-border/40 overflow-hidden relative">
+    <section
+      id="testimonials"
+      className="py-20 bg-sand/20 border-t border-border/40 overflow-hidden relative"
+    >
       {/* CSS Injection for Seamless Loop Marquee */}
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
         @keyframes marquee-ltr {
           0% { transform: translate3d(-50%, 0, 0); }
           100% { transform: translate3d(0%, 0, 0); }
@@ -118,7 +131,9 @@ export function Testimonials() {
         .animate-marquee-rtl:hover {
           animation-play-state: paused;
         }
-      `}} />
+      `,
+        }}
+      />
 
       <div className="mx-auto max-w-6xl px-5 sm:px-8 mb-14 text-center">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal/10 text-teal text-xs font-semibold tracking-wider uppercase mb-3">
@@ -129,7 +144,8 @@ export function Testimonials() {
           Patient Stories & Testimonials
         </h2>
         <p className="mt-3 text-muted-foreground text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
-          Real feedback from individuals who have rediscovered the joy of hearing and reclaimed their quality of life. Hover to pause.
+          Real feedback from individuals who have rediscovered the joy of hearing and reclaimed
+          their quality of life. Hover to pause.
         </p>
       </div>
 

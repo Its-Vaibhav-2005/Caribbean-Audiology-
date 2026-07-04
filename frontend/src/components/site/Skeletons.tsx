@@ -10,7 +10,7 @@ export function HomeSkeleton() {
   return (
     <div className="min-h-screen bg-background pt-28 md:pt-32">
       <Navbar overlay />
-      
+
       {/* Hero Carousel Skeleton */}
       <div className="mx-auto max-w-7xl px-5 sm:px-8 mt-4">
         <div className="relative h-[480px] w-full overflow-hidden rounded-3xl bg-teal/5 animate-pulse flex items-center p-8 sm:p-16">

@@ -35,14 +35,14 @@ export function LiveSupportChat() {
   // Initialize and trigger auto-open or notification dot after a delay
   useEffect(() => {
     setMessages([initialMessage]);
-    
+
     // Add a slight delay before indicating a notification
     const timer = setTimeout(() => {
       if (!isOpen) {
         setHasNewMessage(true);
       }
     }, 1500);
-    
+
     return () => clearTimeout(timer);
   }, []);
 
@@ -142,8 +142,12 @@ export function LiveSupportChat() {
                 <span className="absolute bottom-0 right-0 h-2.5 w-2.5 rounded-full bg-green-500 ring-2 ring-teal" />
               </div>
               <div>
-                <h4 className="font-display text-sm font-semibold leading-tight text-cream">Caribbean Audiology</h4>
-                <p className="text-[10px] text-cream/70 font-semibold tracking-wider uppercase">AI Assistant</p>
+                <h4 className="font-display text-sm font-semibold leading-tight text-cream">
+                  Caribbean Audiology
+                </h4>
+                <p className="text-[10px] text-cream/70 font-semibold tracking-wider uppercase">
+                  AI Assistant
+                </p>
               </div>
             </div>
             <button
@@ -159,7 +163,9 @@ export function LiveSupportChat() {
           <div className="flex-1 overflow-y-auto p-4 space-y-4 max-h-[320px] min-h-[250px] bg-sand/10">
             {messages.map((msg) => (
               <div key={msg.id} className="space-y-3">
-                <div className={`flex gap-2.5 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}>
+                <div
+                  className={`flex gap-2.5 ${msg.sender === "user" ? "justify-end" : "justify-start"}`}
+                >
                   {msg.sender === "bot" && (
                     <div className="flex h-7 w-7 shrink-0 select-none items-center justify-center rounded-full bg-teal/10 text-teal">
                       <Bot className="h-4 w-4" />
@@ -198,7 +204,7 @@ export function LiveSupportChat() {
                 )}
               </div>
             ))}
-            
+
             {/* Typing Indicator */}
             {isTyping && (
               <div className="flex gap-2.5 items-center">
@@ -221,7 +227,10 @@ export function LiveSupportChat() {
           </div>
 
           {/* Form message input */}
-          <form onSubmit={handleSendMessage} className="border-t border-border p-3 bg-card flex gap-2 items-center">
+          <form
+            onSubmit={handleSendMessage}
+            className="border-t border-border p-3 bg-card flex gap-2 items-center"
+          >
             <input
               type="text"
               value={inputValue}
@@ -244,7 +253,10 @@ export function LiveSupportChat() {
       <div className="fixed bottom-1 left-1 sm:bottom-3 sm:left-3 flex items-center justify-center h-24 w-24 z-50">
         {/* Rotating Circular Text */}
         {!isOpen && (
-          <svg className="absolute w-full h-full animate-[spin_15s_linear_infinite] select-none pointer-events-none" viewBox="0 0 100 100">
+          <svg
+            className="absolute w-full h-full animate-[spin_15s_linear_infinite] select-none pointer-events-none"
+            viewBox="0 0 100 100"
+          >
             <path
               id="textPath"
               d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
@@ -252,7 +264,7 @@ export function LiveSupportChat() {
             />
             <text className="fill-teal-mid dark:fill-aqua text-[11px] font-black tracking-[0.16em] uppercase">
               <textPath href="#textPath" startOffset="0%">
-                • AI Assistant • AI Assistant 
+                • AI Assistant • AI Assistant
               </textPath>
             </text>
           </svg>

@@ -1,6 +1,18 @@
 import { createFileRoute, useLocation } from "@tanstack/react-router";
 import { useState, useEffect, useRef } from "react";
-import { Phone, Mail, MapPin, Video, CalendarDays, ArrowRight, Info, X, Baby, Users, ArrowLeft } from "lucide-react";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Video,
+  CalendarDays,
+  ArrowRight,
+  Info,
+  X,
+  Baby,
+  Users,
+  ArrowLeft,
+} from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
@@ -121,7 +133,12 @@ function Appointments() {
                 </p>
               </div>
             ) : (
-              <form ref={formRef} id="appointment-form" onSubmit={handleSubmit} className="mt-8 grid gap-5">
+              <form
+                ref={formRef}
+                id="appointment-form"
+                onSubmit={handleSubmit}
+                className="mt-8 grid gap-5"
+              >
                 <div className="flex justify-start">
                   <button
                     ref={infoBtnRef}
@@ -250,7 +267,8 @@ function Appointments() {
               {!selectedOption ? (
                 <div className="h-full flex flex-col justify-center max-w-4xl mx-auto py-8">
                   <p className="text-center text-muted-foreground mb-8 max-w-lg mx-auto text-base">
-                    Select one of the options below to learn more about how to prepare and what happens during your appointment.
+                    Select one of the options below to learn more about how to prepare and what
+                    happens during your appointment.
                   </p>
                   <div className="grid gap-6 sm:grid-cols-2">
                     <button
@@ -264,7 +282,8 @@ function Appointments() {
                         What to Expect at Your Child’s First Hearing Evaluation (Kids)
                       </h4>
                       <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                        A child-friendly, play-based screening and diagnostic evaluation designed to feel like a game.
+                        A child-friendly, play-based screening and diagnostic evaluation designed to
+                        feel like a game.
                       </p>
                     </button>
 
@@ -279,7 +298,8 @@ function Appointments() {
                         What to Expect at Your First Audiological Appointment (Adults & Seniors)
                       </h4>
                       <p className="mt-3 text-sm text-muted-foreground leading-relaxed">
-                        A comprehensive clinical assessment including personal history, otoscopy, and diagnostic hearing tests.
+                        A comprehensive clinical assessment including personal history, otoscopy,
+                        and diagnostic hearing tests.
                       </p>
                     </button>
                   </div>
@@ -293,10 +313,13 @@ function Appointments() {
                       </div>
                       <ul className="text-sm text-muted-foreground space-y-3 flex-1">
                         <li className="leading-relaxed">
-                          <strong>History & concerns:</strong> You’ll be asked about your child’s medical history, speech and language development, and any concerns you’ve noticed (e.g., not responding to sounds, frequent ear infections).
+                          <strong>History & concerns:</strong> You’ll be asked about your child’s
+                          medical history, speech and language development, and any concerns you’ve
+                          noticed (e.g., not responding to sounds, frequent ear infections).
                         </li>
                         <li className="leading-relaxed">
-                          <strong>Comfort first:</strong> Parents can stay with their child throughout the process to help them feel secure.
+                          <strong>Comfort first:</strong> Parents can stay with their child
+                          throughout the process to help them feel secure.
                         </li>
                       </ul>
                     </div>
@@ -307,21 +330,34 @@ function Appointments() {
                       </div>
                       <ul className="text-sm text-muted-foreground space-y-3 flex-1">
                         <li className="leading-relaxed">
-                          <strong>Ear check:</strong> The audiologist will look inside your child’s ears to check for wax, infection, or structural issues.
+                          <strong>Ear check:</strong> The audiologist will look inside your child’s
+                          ears to check for wax, infection, or structural issues.
                         </li>
                         <li className="leading-relaxed">
-                          <strong>Play based hearing tests:</strong> For younger children, sounds are presented through speakers or headphones, and responses are observed through play (like turning toward a toy or game).
+                          <strong>Play based hearing tests:</strong> For younger children, sounds
+                          are presented through speakers or headphones, and responses are observed
+                          through play (like turning toward a toy or game).
                         </li>
                         <li className="leading-relaxed">
                           <strong>Age appropriate methods:</strong>
                           <ul className="pl-4 mt-1.5 space-y-1 list-disc">
-                            <li><em>Infants:</em> May use gentle sounds and observe reflexes.</li>
-                            <li><em>Toddlers:</em> Visual reinforcement audiometry (sounds paired with lights or toys).</li>
-                            <li><em>Older children:</em> Standard listening tests with headphones, pressing a button or raising a hand when they hear a sound.</li>
+                            <li>
+                              <em>Infants:</em> May use gentle sounds and observe reflexes.
+                            </li>
+                            <li>
+                              <em>Toddlers:</em> Visual reinforcement audiometry (sounds paired with
+                              lights or toys).
+                            </li>
+                            <li>
+                              <em>Older children:</em> Standard listening tests with headphones,
+                              pressing a button or raising a hand when they hear a sound.
+                            </li>
                           </ul>
                         </li>
                         <li className="leading-relaxed">
-                          <strong>Additional checks:</strong> Speech recognition, middle ear function (tympanometry), or otoacoustic emissions may be done to gather more detail.
+                          <strong>Additional checks:</strong> Speech recognition, middle ear
+                          function (tympanometry), or otoacoustic emissions may be done to gather
+                          more detail.
                         </li>
                       </ul>
                     </div>
@@ -332,13 +368,17 @@ function Appointments() {
                       </div>
                       <ul className="text-sm text-muted-foreground space-y-3 flex-1">
                         <li className="leading-relaxed">
-                          <strong>Results explained clearly:</strong> The audiologist will share whether your child’s hearing is within normal limits or if there are any concerns.
+                          <strong>Results explained clearly:</strong> The audiologist will share
+                          whether your child’s hearing is within normal limits or if there are any
+                          concerns.
                         </li>
                         <li className="leading-relaxed">
-                          <strong>Next steps:</strong> If hearing loss is detected, recommendations may include medical follow up, hearing aids, or monitoring.
+                          <strong>Next steps:</strong> If hearing loss is detected, recommendations
+                          may include medical follow up, hearing aids, or monitoring.
                         </li>
                         <li className="leading-relaxed">
-                          <strong>Support & resources:</strong> Parents receive guidance on communication strategies, school support, and follow up care.
+                          <strong>Support & resources:</strong> Parents receive guidance on
+                          communication strategies, school support, and follow up care.
                         </li>
                       </ul>
                     </div>
@@ -353,13 +393,17 @@ function Appointments() {
                       </div>
                       <ul className="text-sm text-muted-foreground space-y-3 flex-1">
                         <li className="leading-relaxed">
-                          <strong>Personal history:</strong> You’ll be asked about medical background, medications, noise exposure, and any hearing or balance concerns.
+                          <strong>Personal history:</strong> You’ll be asked about medical
+                          background, medications, noise exposure, and any hearing or balance
+                          concerns.
                         </li>
                         <li className="leading-relaxed">
-                          <strong>Daily impact:</strong> The audiologist may ask how hearing difficulties affect your work, social life, or family interactions.
+                          <strong>Daily impact:</strong> The audiologist may ask how hearing
+                          difficulties affect your work, social life, or family interactions.
                         </li>
                         <li className="leading-relaxed">
-                          <strong>Support welcome:</strong> Family members are encouraged to attend, especially if they can share observations or assist with communication.
+                          <strong>Support welcome:</strong> Family members are encouraged to attend,
+                          especially if they can share observations or assist with communication.
                         </li>
                       </ul>
                     </div>
@@ -370,20 +414,29 @@ function Appointments() {
                       </div>
                       <ul className="text-sm text-muted-foreground space-y-3 flex-1">
                         <li className="leading-relaxed">
-                          <strong>Ear examination:</strong> A gentle check with an otoscope to look for wax, infection, or other ear canal/ear drum issues.
+                          <strong>Ear examination:</strong> A gentle check with an otoscope to look
+                          for wax, infection, or other ear canal/ear drum issues.
                         </li>
                         <li className="leading-relaxed">
                           <strong>Hearing tests:</strong>
                           <ul className="pl-4 mt-1.5 space-y-1 list-disc">
-                            <li><em>Pure tone audiometry:</em> Listening to tones through headphones and indicating when you hear them.</li>
-                            <li><em>Speech testing:</em> Repeating words or sentences to measure clarity and understanding.</li>
+                            <li>
+                              <em>Pure tone audiometry:</em> Listening to tones through headphones
+                              and indicating when you hear them.
+                            </li>
+                            <li>
+                              <em>Speech testing:</em> Repeating words or sentences to measure
+                              clarity and understanding.
+                            </li>
                           </ul>
                         </li>
                         <li className="leading-relaxed">
-                          <strong>Middle ear function:</strong> Tympanometry may be used to assess eardrum movement and middle ear health.
+                          <strong>Middle ear function:</strong> Tympanometry may be used to assess
+                          eardrum movement and middle ear health.
                         </li>
                         <li className="leading-relaxed">
-                          <strong>Additional checks:</strong> Otoacoustic emissions or balance assessments may be included if relevant.
+                          <strong>Additional checks:</strong> Otoacoustic emissions or balance
+                          assessments may be included if relevant.
                         </li>
                       </ul>
                     </div>
@@ -394,13 +447,17 @@ function Appointments() {
                       </div>
                       <ul className="text-sm text-muted-foreground space-y-3 flex-1">
                         <li className="leading-relaxed">
-                          <strong>Results explained clearly:</strong> You’ll receive a detailed but easy to understand summary of your hearing profile.
+                          <strong>Results explained clearly:</strong> You’ll receive a detailed but
+                          easy to understand summary of your hearing profile.
                         </li>
                         <li className="leading-relaxed">
-                          <strong>Recommendations:</strong> If hearing loss is present, options may include hearing aids, assistive listening devices, medical referral, or communication strategies.
+                          <strong>Recommendations:</strong> If hearing loss is present, options may
+                          include hearing aids, assistive listening devices, medical referral, or
+                          communication strategies.
                         </li>
                         <li className="leading-relaxed">
-                          <strong>Next steps:</strong> The audiologist will discuss follow up care, adjustment periods, and support services.
+                          <strong>Next steps:</strong> The audiologist will discuss follow up care,
+                          adjustment periods, and support services.
                         </li>
                       </ul>
                     </div>
