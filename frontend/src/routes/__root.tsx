@@ -1,5 +1,6 @@
 import { QueryClient } from "@tanstack/react-query";
 import { Outlet, Link, createRootRouteWithContext, useRouter } from "@tanstack/react-router";
+import { LiveSupportChat } from "@/components/site/LiveSupportChat";
 
 function NotFoundComponent() {
   return (
@@ -62,5 +63,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootComponent() {
-  return <Outlet />;
+  return (
+    <>
+      <Outlet />
+      <LiveSupportChat />
+    </>
+  );
 }

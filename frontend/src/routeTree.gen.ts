@@ -11,11 +11,12 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ResourcesRouteImport } from './routes/resources'
-import { Route as NewsRouteImport } from './routes/news'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AppointmentsRouteImport } from './routes/appointments'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ResourcesIndexRouteImport } from './routes/resources.index'
 import { Route as ServicesSpecializedProgramsRouteImport } from './routes/services.specialized-programs'
 import { Route as ServicesRehabilitationRouteImport } from './routes/services.rehabilitation'
 import { Route as ServicesPaediatricAudiologyRouteImport } from './routes/services.paediatric-audiology'
@@ -24,6 +25,7 @@ import { Route as ServicesClinicalAudiologyRouteImport } from './routes/services
 import { Route as ResourcesHearingAidsGuideRouteImport } from './routes/resources.hearing-aids-guide'
 import { Route as ResourcesFirstAppointmentRouteImport } from './routes/resources.first-appointment'
 import { Route as ResourcesFaqsRouteImport } from './routes/resources.faqs'
+import { Route as ResourcesArticleRouteImport } from './routes/resources.article'
 
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
@@ -33,11 +35,6 @@ const ServicesRoute = ServicesRouteImport.update({
 const ResourcesRoute = ResourcesRouteImport.update({
   id: '/resources',
   path: '/resources',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NewsRoute = NewsRouteImport.update({
-  id: '/news',
-  path: '/news',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -59,6 +56,16 @@ const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ResourcesIndexRoute = ResourcesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ResourcesRoute,
 } as any)
 const ServicesSpecializedProgramsRoute =
   ServicesSpecializedProgramsRouteImport.update({
@@ -105,15 +112,20 @@ const ResourcesFaqsRoute = ResourcesFaqsRouteImport.update({
   path: '/faqs',
   getParentRoute: () => ResourcesRoute,
 } as any)
+const ResourcesArticleRoute = ResourcesArticleRouteImport.update({
+  id: '/article',
+  path: '/article',
+  getParentRoute: () => ResourcesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/appointments': typeof AppointmentsRoute
   '/contact': typeof ContactRoute
-  '/news': typeof NewsRoute
   '/resources': typeof ResourcesRouteWithChildren
   '/services': typeof ServicesRouteWithChildren
+  '/resources/article': typeof ResourcesArticleRoute
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/first-appointment': typeof ResourcesFirstAppointmentRoute
   '/resources/hearing-aids-guide': typeof ResourcesHearingAidsGuideRoute
@@ -122,15 +134,15 @@ export interface FileRoutesByFullPath {
   '/services/paediatric-audiology': typeof ServicesPaediatricAudiologyRoute
   '/services/rehabilitation': typeof ServicesRehabilitationRoute
   '/services/specialized-programs': typeof ServicesSpecializedProgramsRoute
+  '/resources/': typeof ResourcesIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/appointments': typeof AppointmentsRoute
   '/contact': typeof ContactRoute
-  '/news': typeof NewsRoute
-  '/resources': typeof ResourcesRouteWithChildren
-  '/services': typeof ServicesRouteWithChildren
+  '/resources/article': typeof ResourcesArticleRoute
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/first-appointment': typeof ResourcesFirstAppointmentRoute
   '/resources/hearing-aids-guide': typeof ResourcesHearingAidsGuideRoute
@@ -139,6 +151,8 @@ export interface FileRoutesByTo {
   '/services/paediatric-audiology': typeof ServicesPaediatricAudiologyRoute
   '/services/rehabilitation': typeof ServicesRehabilitationRoute
   '/services/specialized-programs': typeof ServicesSpecializedProgramsRoute
+  '/resources': typeof ResourcesIndexRoute
+  '/services': typeof ServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -146,9 +160,9 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/appointments': typeof AppointmentsRoute
   '/contact': typeof ContactRoute
-  '/news': typeof NewsRoute
   '/resources': typeof ResourcesRouteWithChildren
   '/services': typeof ServicesRouteWithChildren
+  '/resources/article': typeof ResourcesArticleRoute
   '/resources/faqs': typeof ResourcesFaqsRoute
   '/resources/first-appointment': typeof ResourcesFirstAppointmentRoute
   '/resources/hearing-aids-guide': typeof ResourcesHearingAidsGuideRoute
@@ -157,6 +171,8 @@ export interface FileRoutesById {
   '/services/paediatric-audiology': typeof ServicesPaediatricAudiologyRoute
   '/services/rehabilitation': typeof ServicesRehabilitationRoute
   '/services/specialized-programs': typeof ServicesSpecializedProgramsRoute
+  '/resources/': typeof ResourcesIndexRoute
+  '/services/': typeof ServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -165,9 +181,9 @@ export interface FileRouteTypes {
     | '/about'
     | '/appointments'
     | '/contact'
-    | '/news'
     | '/resources'
     | '/services'
+    | '/resources/article'
     | '/resources/faqs'
     | '/resources/first-appointment'
     | '/resources/hearing-aids-guide'
@@ -176,15 +192,15 @@ export interface FileRouteTypes {
     | '/services/paediatric-audiology'
     | '/services/rehabilitation'
     | '/services/specialized-programs'
+    | '/resources/'
+    | '/services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/appointments'
     | '/contact'
-    | '/news'
-    | '/resources'
-    | '/services'
+    | '/resources/article'
     | '/resources/faqs'
     | '/resources/first-appointment'
     | '/resources/hearing-aids-guide'
@@ -193,15 +209,17 @@ export interface FileRouteTypes {
     | '/services/paediatric-audiology'
     | '/services/rehabilitation'
     | '/services/specialized-programs'
+    | '/resources'
+    | '/services'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/appointments'
     | '/contact'
-    | '/news'
     | '/resources'
     | '/services'
+    | '/resources/article'
     | '/resources/faqs'
     | '/resources/first-appointment'
     | '/resources/hearing-aids-guide'
@@ -210,6 +228,8 @@ export interface FileRouteTypes {
     | '/services/paediatric-audiology'
     | '/services/rehabilitation'
     | '/services/specialized-programs'
+    | '/resources/'
+    | '/services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -217,7 +237,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AppointmentsRoute: typeof AppointmentsRoute
   ContactRoute: typeof ContactRoute
-  NewsRoute: typeof NewsRoute
   ResourcesRoute: typeof ResourcesRouteWithChildren
   ServicesRoute: typeof ServicesRouteWithChildren
 }
@@ -236,13 +255,6 @@ declare module '@tanstack/react-router' {
       path: '/resources'
       fullPath: '/resources'
       preLoaderRoute: typeof ResourcesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/news': {
-      id: '/news'
-      path: '/news'
-      fullPath: '/news'
-      preLoaderRoute: typeof NewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -272,6 +284,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/resources/': {
+      id: '/resources/'
+      path: '/'
+      fullPath: '/resources/'
+      preLoaderRoute: typeof ResourcesIndexRouteImport
+      parentRoute: typeof ResourcesRoute
     }
     '/services/specialized-programs': {
       id: '/services/specialized-programs'
@@ -329,19 +355,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesFaqsRouteImport
       parentRoute: typeof ResourcesRoute
     }
+    '/resources/article': {
+      id: '/resources/article'
+      path: '/article'
+      fullPath: '/resources/article'
+      preLoaderRoute: typeof ResourcesArticleRouteImport
+      parentRoute: typeof ResourcesRoute
+    }
   }
 }
 
 interface ResourcesRouteChildren {
+  ResourcesArticleRoute: typeof ResourcesArticleRoute
   ResourcesFaqsRoute: typeof ResourcesFaqsRoute
   ResourcesFirstAppointmentRoute: typeof ResourcesFirstAppointmentRoute
   ResourcesHearingAidsGuideRoute: typeof ResourcesHearingAidsGuideRoute
+  ResourcesIndexRoute: typeof ResourcesIndexRoute
 }
 
 const ResourcesRouteChildren: ResourcesRouteChildren = {
+  ResourcesArticleRoute: ResourcesArticleRoute,
   ResourcesFaqsRoute: ResourcesFaqsRoute,
   ResourcesFirstAppointmentRoute: ResourcesFirstAppointmentRoute,
   ResourcesHearingAidsGuideRoute: ResourcesHearingAidsGuideRoute,
+  ResourcesIndexRoute: ResourcesIndexRoute,
 }
 
 const ResourcesRouteWithChildren = ResourcesRoute._addFileChildren(
@@ -354,6 +391,7 @@ interface ServicesRouteChildren {
   ServicesPaediatricAudiologyRoute: typeof ServicesPaediatricAudiologyRoute
   ServicesRehabilitationRoute: typeof ServicesRehabilitationRoute
   ServicesSpecializedProgramsRoute: typeof ServicesSpecializedProgramsRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 const ServicesRouteChildren: ServicesRouteChildren = {
@@ -362,6 +400,7 @@ const ServicesRouteChildren: ServicesRouteChildren = {
   ServicesPaediatricAudiologyRoute: ServicesPaediatricAudiologyRoute,
   ServicesRehabilitationRoute: ServicesRehabilitationRoute,
   ServicesSpecializedProgramsRoute: ServicesSpecializedProgramsRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 
 const ServicesRouteWithChildren = ServicesRoute._addFileChildren(
@@ -373,7 +412,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AppointmentsRoute: AppointmentsRoute,
   ContactRoute: ContactRoute,
-  NewsRoute: NewsRoute,
   ResourcesRoute: ResourcesRouteWithChildren,
   ServicesRoute: ServicesRouteWithChildren,
 }

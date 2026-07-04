@@ -141,6 +141,7 @@ function Index() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link
                   to="/appointments"
+                  hash="appointment-form"
                   className="inline-flex items-center gap-2 rounded-full bg-aqua px-7 py-3.5 text-sm font-semibold text-teal hover:bg-cream transition-colors"
                 >
                   Book Appointment <ArrowRight className="h-4 w-4" />

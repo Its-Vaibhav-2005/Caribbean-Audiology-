@@ -6,7 +6,7 @@ export function Logo({ variant = "light" }: { variant?: "light" | "dark" }) {
     <Link to="/" className="flex items-center group" aria-label="Caribbean Audiology - Go to Home">
       <img
         src={logoSrc}
-        className="h-18 md:h-24 w-auto object-contain transition-transform group-hover:scale-102"
+        className="h-24 md:h-28 w-auto object-contain transition-transform group-hover:scale-102"
         alt="Caribbean Audiology Logo"
       />
     </Link>

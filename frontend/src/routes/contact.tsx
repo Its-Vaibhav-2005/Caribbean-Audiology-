@@ -3,6 +3,8 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { Navbar } from "@/components/site/Navbar";
 import { Footer } from "@/components/site/Footer";
 import { PageHeader } from "@/components/site/PageHeader";
+import { Testimonials } from "@/components/site/Testimonials";
+import { FloatingTrustButton } from "@/components/site/FloatingTrustButton";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -83,7 +85,10 @@ function Contact() {
         </div>
       </section>
 
+      <Testimonials />
+
       <Footer />
+      <FloatingTrustButton />
     </div>
   );
 }

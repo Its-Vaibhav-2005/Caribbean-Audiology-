@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Instagram, Facebook } from "lucide-react";
 import { Logo } from "./Logo";
 
 export function Footer() {
@@ -32,12 +32,7 @@ export function Footer() {
               </Link>
             </li>
             <li>
-              <Link to="/news" className="hover:text-aqua">
-                News &amp; Blog
-              </Link>
-            </li>
-            <li>
-              <Link to="/appointments" className="hover:text-aqua">
+              <Link to="/appointments" hash="appointment-form" className="hover:text-aqua">
                 Book Appointment
               </Link>
             </li>
@@ -45,14 +40,19 @@ export function Footer() {
         </div>
         <div>
           <h4 className="font-display text-cream text-lg mb-4">Contact</h4>
-          <ul className="space-y-3 text-sm">
+          <ul className="space-y-3 text-sm mb-6">
             <li className="flex items-start gap-2">
               <Phone className="h-4 w-4 mt-0.5 text-aqua shrink-0" />
-              <a href="tel:+18687356666">+1-868-735-6666</a>
+              <a href="tel:+18687356666" className="hover:text-aqua transition-colors">
+                +1-868-735-6666
+              </a>
             </li>
             <li className="flex items-start gap-2">
               <Mail className="h-4 w-4 mt-0.5 text-aqua shrink-0" />
-              <a href="mailto:caribbeanaudiologytt@gmail.com" className="break-all">
+              <a
+                href="mailto:caribbeanaudiologytt@gmail.com"
+                className="break-all hover:text-aqua transition-colors"
+              >
                 caribbeanaudiologytt@gmail.com
               </a>
             </li>
@@ -61,6 +61,44 @@ export function Footer() {
               Trinidad &amp; Tobago
             </li>
           </ul>
+
+          <div className="flex items-center justify-center gap-6 border-t border-cream/10 pt-4">
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cream/60 hover:text-aqua transition-colors"
+              aria-label="Instagram"
+            >
+              <Instagram className="h-[21px] w-[21px]" strokeWidth={2.5} />
+            </a>
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cream/60 hover:text-aqua transition-colors"
+              aria-label="Facebook"
+            >
+              <Facebook className="h-[21px] w-[21px]" strokeWidth={2.5} />
+            </a>
+            <a
+              href="https://x.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cream/60 hover:text-aqua transition-colors"
+              aria-label="X (formerly Twitter)"
+            >
+              <svg
+                className="h-[21px] w-[21px] fill-current"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                stroke="currentColor"
+                strokeWidth="0.5"
+              >
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
       <div className="border-t border-cream/10">
