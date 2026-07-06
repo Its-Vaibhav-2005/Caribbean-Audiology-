@@ -10,7 +10,7 @@ export function Logo({ variant = "light" }: { variant?: "light" | "dark" }) {
     >
       <img
         src={logoSrc}
-        className="h-24 w-28 md:h-28 md:w-28 object-contain shrink-0 transition-transform group-hover:scale-102"
+        className="h-22 w-45 md:h-32 md:w-50 object-contain shrink-0 transition-transform group-hover:scale-102"
         alt="Caribbean Audiology Logo"
       />
     </Link>
