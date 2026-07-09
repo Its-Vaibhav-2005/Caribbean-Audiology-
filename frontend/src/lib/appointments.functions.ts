@@ -6,6 +6,7 @@ const appointmentSchema = z.object({
   email: z.string().email("Invalid email address"),
   service: z.string().min(1, "Service is required"),
   date: z.string().min(1, "Preferred date is required"),
+  preferredLocation: z.string().optional(),
   notes: z.string().optional(),
 });
 

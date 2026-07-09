@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from "react";
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { ArrowRight, ChevronLeft, ChevronRight, Instagram, Facebook } from "lucide-react";
 import heroClinical from "@/assets/hero-clinical.jpg";
 import heroDevices from "@/assets/hero-devices.jpg";
 import heroPaediatric from "@/assets/hero-paediatric.jpg";
@@ -119,7 +119,7 @@ export function HeroCarousel() {
 
         {/* Content */}
         <div className="relative z-10 flex h-full flex-col">
-          <div className="flex-1 flex items-end sm:items-center pt-8 pb-20 sm:pb-28">
+          <div className="flex-1 flex items-end pt-8 pb-20 sm:pb-28">
             <div className="mx-auto w-full max-w-7xl px-5 sm:px-8">
               <div className="max-w-xl sm:max-w-2xl">
                 <div
@@ -140,29 +140,70 @@ export function HeroCarousel() {
                 >
                   {SLIDES[i].subtitle}
                 </p>
-                <div className="mt-4 sm:mt-9 flex flex-wrap gap-3">
-                  <Link
-                    to="/appointments"
-                    hash="appointment-form"
-                    className="inline-flex items-center gap-2 rounded-full bg-teal-mid px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-cream transition-all hover:bg-aqua hover:text-teal hover:shadow-2xl"
-                  >
-                    Book Appointment <ArrowRight className="h-4 w-4" />
-                  </Link>
-                  <Link
-                    to={SLIDES[i].to}
-                    className="inline-flex items-center gap-2 rounded-full border border-cream/40 px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-cream transition-all hover:bg-cream/10"
-                  >
-                    Explore Services
-                  </Link>
+                <div className="mt-4 sm:mt-9 flex flex-wrap items-center gap-4 sm:gap-6">
+                  <div className="flex flex-wrap gap-3">
+                    <Link
+                      to="/appointments"
+                      hash="appointment-form"
+                      className="inline-flex items-center gap-2 rounded-full bg-teal-mid px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-cream transition-all hover:bg-aqua hover:text-teal hover:shadow-2xl"
+                    >
+                      Book Appointment <ArrowRight className="h-4 w-4" />
+                    </Link>
+                    <Link
+                      to={SLIDES[i].to}
+                      className="inline-flex items-center gap-2 rounded-full border border-cream/40 px-6 py-3 sm:px-7 sm:py-3.5 text-xs sm:text-sm font-semibold text-cream transition-all hover:bg-cream/10"
+                    >
+                      Explore Services
+                    </Link>
+                  </div>
+                  <div className="flex items-center gap-3 animate-in fade-in slide-in-from-left-10 duration-700">
+                    <div className="hidden xs:block h-4 w-px bg-cream/20" />
+                    <span className="hidden xs:inline text-xs font-medium tracking-wider uppercase text-cream/50">Follow Us</span>
+                    <a
+                      href="https://www.instagram.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-cream/70 hover:text-aqua transition-colors p-1"
+                      aria-label="Instagram"
+                    >
+                      <Instagram className="h-5 w-5" />
+                    </a>
+                    <a
+                      href="https://www.facebook.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-cream/70 hover:text-aqua transition-colors p-1"
+                      aria-label="Facebook"
+                    >
+                      <Facebook className="h-5 w-5" />
+                    </a>
+                    <a
+                      href="https://x.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-cream/70 hover:text-aqua transition-colors p-1"
+                      aria-label="X (formerly Twitter)"
+                    >
+                      <svg
+                        className="h-4.5 w-4.5 fill-current"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                        width="18"
+                        height="18"
+                      >
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Controls row */}
-          <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 z-20 px-5 sm:px-8">
+          <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 z-20 px-5 sm:px-8 pointer-events-none">
             <div className="mx-auto flex max-w-7xl items-end justify-between gap-4">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 pointer-events-auto">
                 <button
                   onClick={prev}
                   aria-label="Previous slide"
@@ -191,7 +232,7 @@ export function HeroCarousel() {
                 </div>
               </div>
 
-              <div className="hidden sm:block">
+              <div className="hidden sm:block pointer-events-auto">
                 <VisitorCounter />
               </div>
             </div>

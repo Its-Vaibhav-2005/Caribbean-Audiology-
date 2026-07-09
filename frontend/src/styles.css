@@ -162,3 +162,14 @@
 .animate-text-glow {
   animation: text-glow-pulse 2s infinite ease-in-out;
 }
+
+/* Prevent layout shift and page shaking when dropdowns or popovers open */
+html {
+  scrollbar-gutter: stable;
+}
+
+body[data-scroll-locked], 
+body[style*="overflow: hidden"] {
+  overflow: auto !important;
+  padding-right: 0px !important;
+}

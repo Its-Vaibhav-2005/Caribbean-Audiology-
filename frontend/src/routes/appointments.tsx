@@ -21,6 +21,16 @@ import { createAppointment } from "@/lib/appointments.functions";
 import { FloatingTrustButton } from "@/components/site/FloatingTrustButton";
 import { delay } from "@/lib/utils";
 import { AppointmentsSkeleton } from "@/components/site/Skeletons";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Calendar } from "@/components/ui/calendar";
+import { format } from "date-fns";
 
 export const Route = createFileRoute("/appointments")({
   loader: () => delay(450),
@@ -84,6 +94,7 @@ function Appointments() {
       email: formData.get("email") as string,
       service: formData.get("service") as string,
       date: formData.get("date") as string,
+      preferredLocation: formData.get("preferredLocation") as string,
       notes: (formData.get("notes") as string) || "",
     };
 
@@ -153,7 +164,10 @@ function Appointments() {
                   <Field label="Full name" name="name" required />
                   <Field label="Phone" name="phone" required type="tel" />
                 </div>
-                <Field label="Email" name="email" required type="email" />
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <Field label="Email" name="email" required type="email" />
+                  <Field label="Preferred date" name="date" type="date" />
+                </div>
                 <div className="grid gap-5 sm:grid-cols-2">
                   <Field
                     label="Service"
@@ -165,10 +179,23 @@ function Appointments() {
                       "Hearing Aid Fitting",
                       "Paediatric Screening",
                       "Tele-audiology",
+                      "ENT Consultation",
+                      "Paediatrician Consultation",
+                      "Internal Medicine Consultation",
                       "Other",
                     ]}
                   />
-                  <Field label="Preferred date" name="date" type="date" />
+                  <Field
+                    label="Preferred Location"
+                    name="preferredLocation"
+                    as="select"
+                    options={[
+                      "Central Trinidad",
+                      "East Trinidad",
+                      "Northwest Trinidad",
+                      "North Trinidad",
+                    ]}
+                  />
                 </div>
                 <Field label="Notes (optional)" name="notes" as="textarea" />
                 <button
@@ -489,16 +516,57 @@ function Field({
   options?: string[];
 }) {
   const cls =
-    "mt-1.5 w-full rounded-lg border border-input bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-mid";
+    "mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-mid transition-all";
+  
+  const [date, setDate] = useState<Date | undefined>(undefined);
+
   return (
     <label className="block">
       <span className="text-sm font-medium text-foreground">{label}</span>
       {as === "select" ? (
-        <select name={name} className={cls} required={required}>
-          {options?.map((o) => (
-            <option key={o}>{o}</option>
-          ))}
-        </select>
+        <Select name={name} required={required} defaultValue={options?.[0]} modal={false}>
+          <SelectTrigger className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 h-auto text-sm focus:ring-2 focus:ring-teal-mid transition-all text-left">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent className="rounded-xl border border-border bg-card shadow-lg max-h-[300px]">
+            {options?.map((o) => (
+              <SelectItem key={o} value={o} className="rounded-lg focus:bg-teal/10 focus:text-teal font-sans py-2.5 px-3 cursor-pointer">
+                {o}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      ) : type === "date" ? (
+        <div className="relative">
+          <Popover modal={false}>
+            <PopoverTrigger asChild>
+              <button
+                type="button"
+                className={`${cls} flex items-center justify-between text-left cursor-pointer font-sans`}
+              >
+                <span className={date ? "text-foreground" : "text-muted-foreground"}>
+                  {date ? format(date, "PPP") : "Select preferred date"}
+                </span>
+                <CalendarDays className="h-4 w-4 text-teal-mid" />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0 rounded-xl border border-border bg-card shadow-lg" align="start">
+              <Calendar
+                mode="single"
+                selected={date}
+                onSelect={setDate}
+                initialFocus
+                className="rounded-xl"
+              />
+            </PopoverContent>
+          </Popover>
+          <input
+            type="hidden"
+            name={name}
+            value={date ? format(date, "yyyy-MM-dd") : ""}
+            required={required}
+          />
+        </div>
       ) : as === "textarea" ? (
         <textarea name={name} className={cls} rows={4} />
       ) : (
