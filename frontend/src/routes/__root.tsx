@@ -1,6 +1,13 @@
 import { QueryClient } from "@tanstack/react-query";
-import { Outlet, Link, createRootRouteWithContext, useRouter } from "@tanstack/react-router";
+import {
+  Outlet,
+  Link,
+  createRootRouteWithContext,
+  useRouter,
+  useLocation,
+} from "@tanstack/react-router";
 import { LiveSupportChat } from "@/components/site/LiveSupportChat";
+import { FindUsHere } from "@/components/site/FindUsHere";
 
 function NotFoundComponent() {
   return (
@@ -63,10 +70,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootComponent() {
+  const location = useLocation();
+  const shouldHide = location.pathname === "/contact" || location.pathname === "/appointments";
+
   return (
     <>
       <Outlet />
       <LiveSupportChat />
+      {!shouldHide && <FindUsHere />}
     </>
   );
 }

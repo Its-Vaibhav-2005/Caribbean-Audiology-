@@ -59,10 +59,19 @@ function Appointments() {
   const [error, setError] = useState<string | null>(null);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState<"kids" | "adults" | null>(null);
+  const [defaultLoc, setDefaultLoc] = useState<string | undefined>(undefined);
 
   const location = useLocation();
   const formRef = useRef<HTMLFormElement>(null);
   const infoBtnRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const loc = params.get("location");
+    if (loc) {
+      setDefaultLoc(loc);
+    }
+  }, [location.search]);
 
   useEffect(() => {
     const hasHash =
@@ -186,9 +195,11 @@ function Appointments() {
                     ]}
                   />
                   <Field
+                    key={defaultLoc || "default"}
                     label="Preferred Location"
                     name="preferredLocation"
                     as="select"
+                    defaultValue={defaultLoc}
                     options={[
                       "Central Trinidad",
                       "East Trinidad",
@@ -507,6 +518,7 @@ function Field({
   required,
   as,
   options,
+  defaultValue,
 }: {
   label: string;
   name: string;
@@ -514,23 +526,33 @@ function Field({
   required?: boolean;
   as?: "select" | "textarea";
   options?: string[];
+  defaultValue?: string;
 }) {
   const cls =
     "mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-mid transition-all";
-  
+
   const [date, setDate] = useState<Date | undefined>(undefined);
 
   return (
     <label className="block">
       <span className="text-sm font-medium text-foreground">{label}</span>
       {as === "select" ? (
-        <Select name={name} required={required} defaultValue={options?.[0]} modal={false}>
+        <Select
+          name={name}
+          required={required}
+          defaultValue={defaultValue || options?.[0]}
+          modal={false}
+        >
           <SelectTrigger className="mt-1.5 w-full rounded-xl border border-input bg-background px-4 py-3 h-auto text-sm focus:ring-2 focus:ring-teal-mid transition-all text-left">
             <SelectValue />
           </SelectTrigger>
           <SelectContent className="rounded-xl border border-border bg-card shadow-lg max-h-[300px]">
             {options?.map((o) => (
-              <SelectItem key={o} value={o} className="rounded-lg focus:bg-teal/10 focus:text-teal font-sans py-2.5 px-3 cursor-pointer">
+              <SelectItem
+                key={o}
+                value={o}
+                className="rounded-lg focus:bg-teal/10 focus:text-teal font-sans py-2.5 px-3 cursor-pointer"
+              >
                 {o}
               </SelectItem>
             ))}
@@ -550,7 +572,10 @@ function Field({
                 <CalendarDays className="h-4 w-4 text-teal-mid" />
               </button>
             </PopoverTrigger>
-            <PopoverContent className="w-auto p-0 rounded-xl border border-border bg-card shadow-lg" align="start">
+            <PopoverContent
+              className="w-auto p-0 rounded-xl border border-border bg-card shadow-lg"
+              align="start"
+            >
               <Calendar
                 mode="single"
                 selected={date}
